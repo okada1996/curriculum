@@ -51,7 +51,7 @@ public class Task1_4 {
     //   }/* (問③誤解答)ダメな理由要確認 */
   
 
-       else if (name.equals(USER_RNAME) && !(pass.equals(USER_PASSWORD))){
+       else if (name.equals(USER_RNAME)){
        System.out.println(CONST_MSG_ERROR_PASS);
     }/* (③解答) */
 
@@ -59,7 +59,7 @@ public class Task1_4 {
     
       // ④ 「USER_PASSWORD」の値のみ等しい場合。
      //定数を使用して「 名前に誤りがあります。 」と出力してください。
-       else if (pass.equals(USER_PASSWORD) && !(name.equals(USER_RNAME))){
+       else if (pass.equals(USER_PASSWORD)){
        System.out.println(CONST_MSG_ERROR_NAME);
     }/* (④解答) */
 
