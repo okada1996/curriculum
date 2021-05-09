@@ -48,7 +48,8 @@ public class EmployeeService {
  PreparedStatement preparedStatement = null;
  
  try {
-  // データベースに接続
+  // データベースに接続　　　　　SQLの実行には、 Statementインタフェース を使用します。このクラスはConnectionクラスのcreateStatement()メソッドで取得します。
+     
  Class.forName(POSTGRES_DRIVER);
  connection = DriverManager.getConnection(JDBC_CONNECTION, USER, PASS);
  statement = connection.createStatement();
@@ -69,7 +70,8 @@ public class EmployeeService {
   // 問④ preparedStatementを使って、一番目のindexに今の時間をセットしてください。2番目のindexにIDをセットしてください。
  preparedStatement.setString(1, login_time);
  preparedStatement.setString(2, id);
-  // 問⑤ UPDATEを実行する文を記述
+  // 問⑤ UPDATEを実行する文を記述　　　　StatementインタフェースのexecuteQuery()メソッドは、引数で指定されたSQLをデータベースで実行するメソッドです。
+ 
  preparedStatement.executeUpdate();
  /*
  * UPDATEが成功したものを即座に表示
@@ -79,16 +81,17 @@ public class EmployeeService {
   //問⑥ 一番目のindexにIDをセットしてください。2番目のindexにPASSWORDをセット。
  preparedStatement.setString(1, id);
  preparedStatement.setString(2, password);
-  // SQLを実行。実行した結果をresultSetに格納。
- resultSet = preparedStatement.executeQuery();
+  // SQLを実行。実行した結果をresultSetに格納。　　ResultSetはSQLインターフェースの 実行結果を格納 し、その 情報も取得できる メソッドも備えているということです。
  
+ resultSet = preparedStatement.executeQuery();
+ //next()メソッド は、該当する行が存在する場合にのみ true を返します。
  while (resultSet.next()) {
-  // 問⑦ tmpName,tmpComment,tmpLoginTimeに適当な値を入れてください。
+  // 問⑦ tmpName,tmpComment,tmpLoginTimeに適当な値を入れてください。データの列名を取得。文字列の場合はgetString()メソッド
  String tmpName = resultSet.getString("name");
  String tmpComment = resultSet.getString("comment");
  String tmpLoginTime = resultSet.getString("login_time");
  
-  // 問⑧ EmployeeBeanに取得したデータを入れてください。
+  // 問⑧ EmployeeBeanに取得したデータを入れてください。 
  employeeDate = new EmployeeBean();
  employeeDate.setName(tmpName);
  employeeDate.setComment(tmpComment);
@@ -120,6 +123,7 @@ public class EmployeeService {
  e.printStackTrace();
  }
  }
+//searchメソッドの戻り値　戻り値employeeDate（データベースから取ってきた結果）はemployeeBeanに格納。EmployeeControllerへ
  return employeeDate;
  }
 }

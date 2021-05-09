@@ -78,7 +78,6 @@ public class ExException {
                 }
 
             } catch (NullPointerException e) {
-                System.out.println(CONST_MSG_NULLPO);
                 printException(e);
             } catch (ArrayIndexOutOfBoundsException e) {
                 printException(e);
@@ -96,19 +95,18 @@ public class ExException {
         System.out.println("お疲れ様でした！");
     }
 
+    
+
     /**
      * 問①: 以下のルールに沿ってNullPointerExceptionを投げるメソッドを実装しなさい。
      * ルール1: private static void 任意のメソッド名 throws 上位へ投げるExceptionクラス名 { NullPointerExceptionを発生させる処理 }
      * ルール2: 例外発生時に設定するメッセージは、定義済みの定数から適当なものを指定してください。
-     * @param object 
+     * 
      */
-    // ここへ記述
-    private static void Null(String str) throws NullPointerException{
-        int strLen = str.length();    
-        System.out.println(str + "は" + strLen + "文字になります");
-    
+    private static void Null(Object object) {
+        throw new NullPointerException(CONST_MSG_NULLPO );
     }
-
+    
     /**
      * 例外処理のメッセージを出力
      *
